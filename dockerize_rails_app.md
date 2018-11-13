@@ -2,7 +2,7 @@
 [參考文章](https://philipzheng.gitbooks.io/docker_practice/content/introduction/what.html)
 
 ### mac如何安裝docker CLI
-[按我](https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac)
+[按我](https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac)  
 安裝後請在終端機輸入`$docker version` 確認安裝成功。
 
 ### dockerize rails 應用示範
@@ -65,7 +65,13 @@ volumes:
   postgres:
 ```
 
-3. 在終端機中輸入`$ docker-compose up`即可將應用在container中跑起來。
+3. 在終端機中輸入`$docker-compose build`、`$docker-compose up`即可將應用在container中跑起來。
+
+### 將image上傳到docker hub
+1. 先去[docker hub](https://hub.docker.com/)註冊一個帳號。  
+2. 將剛剛產生的image標註tag  `$docker tag <image-name> <docker-account>/<image-name>`
+3. `$docker push <docker-account>/<image-name>`
+
 
 ### Notes
 在正在運行的container輸入指令：`$docker-compose exec <service_name> <commands>`。
