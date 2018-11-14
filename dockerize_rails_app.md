@@ -14,12 +14,12 @@
 ### dockerize rails 應用示範
 假設app會用到別的服務(redis, postgres)的情況下，簡單說明如何在本地端 dockerize Rails 應用。流程:
 
-#### 撰寫 Dockerfile 以及 docker-compose.yml。
-##### Dockerfile的目的是在當前的目錄底下產生image。
+### 撰寫 Dockerfile 以及 docker-compose.yml。
+#### 1. Dockerfile的目的是在當前的目錄底下產生image。
 
 在應用根目錄新增Dockerfile -> `$touch Dockerfile`  
 
-``` 
+``` docker
 # Base image: 選擇base image，你的應用的image將會以這個image為基底
 FROM ruby:2.4.2
 
@@ -38,8 +38,8 @@ COPY . /myapp
 ```
 
 
-##### docker-compose.yml則是用來簡化運行多個container的指令以及自動設置container間的通信方式。  
-在應用根目錄新增docker-compose.yml -> `$touch docker-compose.yml`
+#### 2. docker-compose.yml則是用來簡化運行多個container的指令以及自動設置container間的通信方式。  
+在應用根目錄新增docker-compose.yml: `$touch docker-compose.yml`
 
 ``` yml
 version: '3'
@@ -91,7 +91,7 @@ volumes:
 4. 把產生的image從遠端拉回來：`$docker pull <docker-account>/<image-name>`
 
 
-### Notes
+### 在container中運行指令
 在正在運行的container輸入指令：`$docker-compose exec <service_name> <commands>`。
 用上面的例子來說，如果要遷移資料庫的話的話需要下這樣的指令：
 `$docker-compose exec web rake db:migrate`
